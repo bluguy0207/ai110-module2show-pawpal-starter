@@ -1,36 +1,44 @@
 classDiagram
-    class Owner {
-        -str name
-        -list~Pet~ pets
-        +add_pet(pet)
-        +remove_pet(pet)
-        +view_tasks()
-    }
 
-    class Pet {
-        -str name
-        -str species
-        -int age
-        -list~Task~ tasks
-        +add_task(task)
-        +remove_task(task)
-    }
+class Owner {
+    -str name
+    -list~Pet~ pets
+    +add_pet(pet)
+    +remove_pet(pet)
+    +view_tasks()
+}
 
-    class Task {
-        -str title
-        -date due_date
-        -bool completed
-        +mark_complete()
-        +is_due_today()
-    }
+class Pet {
+    -str name
+    -str species
+    -int age
+    -list~Task~ tasks
+    +add_task(task)
+    +remove_task(task)
+}
 
-    class PawPalSystem {
-        -list~Owner~ owners
-        +add_owner(owner)
-        +find_pet(pet_name)
-        +get_today_tasks()
-    }
+class Task {
+    -str title
+    -str due_date
+    -str time
+    -str frequency
+    -bool completed
+    +mark_complete()
+    +is_due_today()
+}
 
-    PawPalSystem "1" *-- "many" Owner : manages
-    Owner "1" *-- "many" Pet : owns
-    Pet "1" *-- "many" Task : has
+class PawPalSystem {
+    -list~Owner~ owners
+    +add_owner(owner)
+    +find_pet(pet_name)
+    +get_today_tasks()
+    +sort_by_time(tasks)
+    +filter_by_pet(pet_name)
+    +filter_by_status(completed)
+    +detect_conflicts()
+    +mark_task_complete(pet_name, task)
+}
+
+PawPalSystem "1" *-- "many" Owner : manages
+Owner "1" *-- "many" Pet : owns
+Pet "1" *-- "many" Task : contains

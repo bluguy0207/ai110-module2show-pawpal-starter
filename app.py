@@ -87,9 +87,19 @@ if st.session_state.owner.pets:
     task_title = st.text_input("Task title")
     due_date = st.date_input("Due date")
 
+    frequency = st.selectbox(
+    "Frequency",
+    ["once", "daily", "weekly"]
+)
+
     if st.button("Add Task"):
         if task_title.strip():
-            task = Task(task_title, str(due_date), "09:00")
+            task = Task(
+            task_title,
+            str(due_date),
+            "09:00",
+            frequency
+            )
             selected_pet.add_task(task)
             st.success("Task added!")
         else:
@@ -135,7 +145,30 @@ if st.button("Generate Schedule"):
     today_tasks = st.session_state.system.get_today_tasks()
 
     if today_tasks:
-        for pet_name, task in today_tasks:
-            st.write(f"🐾 **{pet_name}**: {task.title}")
+
+        # Extract only Task objects for sorting
+        tasks = [task for _, task in today_tasks]
+
+        sorted_tasks = st.session_state.system.sort_by_time(tasks)
+
+        st.success("Schedule generated!")
+
+        for task in sorted_tasks:
+            st.write(
+                f"⏰ {task.time} - {task.title}"
+            )
+
+        # Show conflicts
+        conflicts = st.session_state.system.detect_conflicts()
+
+        if conflicts:
+            st.warning("⚠️ Scheduling Conflicts Found")
+
+            for conflict in conflicts:
+                st.warning(conflict)
+
+        else:
+            st.success("No scheduling conflicts detected.")
+
     else:
         st.info("No tasks due today.")
