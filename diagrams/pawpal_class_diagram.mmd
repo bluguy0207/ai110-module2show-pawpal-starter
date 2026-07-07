@@ -1,0 +1,36 @@
+classDiagram
+    class Owner {
+        -str name
+        -list~Pet~ pets
+        +add_pet(pet)
+        +remove_pet(pet)
+        +view_tasks()
+    }
+
+    class Pet {
+        -str name
+        -str species
+        -int age
+        -list~Task~ tasks
+        +add_task(task)
+        +remove_task(task)
+    }
+
+    class Task {
+        -str title
+        -date due_date
+        -bool completed
+        +mark_complete()
+        +is_due_today()
+    }
+
+    class PawPalSystem {
+        -list~Owner~ owners
+        +add_owner(owner)
+        +find_pet(pet_name)
+        +get_today_tasks()
+    }
+
+    PawPalSystem "1" *-- "many" Owner : manages
+    Owner "1" *-- "many" Pet : owns
+    Pet "1" *-- "many" Task : has
