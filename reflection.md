@@ -7,6 +7,8 @@
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
 
+I designed four classes: Owner, Pet, Task, and PawPalSystem. The Owner class manages a user's pets. Each Pet stores information about an individual animal and its care tasks. The Task class represents activities like feeding, walking, or vet appointments and tracks whether they are completed. The PawPalSystem class manages all owners and provides methods to search for pets and retrieve daily tasks.
+
 **b. Design changes**
 
 - Did your design change during implementation?
