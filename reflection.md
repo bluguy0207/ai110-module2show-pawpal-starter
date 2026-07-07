@@ -28,6 +28,9 @@ I designed four classes: Owner, Pet, Task, and PawPalSystem. The Owner class man
 - Describe one tradeoff your scheduler makes.
 - Why is that tradeoff reasonable for this scenario?
 
+My scheduler only checks for tasks with the exact same date and time. It does not detect overlapping task durations, which keeps the algorithm simple but makes conflict detection less accurate.
+
+
 ---
 
 ## 3. AI Collaboration

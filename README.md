@@ -66,29 +66,60 @@ pytest --cov
 
 Sample test output:
 
+```text
+============================= test session starts =============================
+collected 2 items
+
+tests/test_pawpal.py ..                                                   [100%]
+
+============================== 2 passed in 0.03s =============================
 ```
 # Paste your pytest output here
 ```
+PS C:\Users\troyj\ai110-module2show-pawpal-starter> C:\Users\troyj\AppData\Local\Python\pythoncore-3.14-64\python.exe -m pytest
+======================================================================= test session starts =======================================================================
+platform win32 -- Python 3.14.3, pytest-9.1.0, pluggy-1.6.0
+rootdir: C:\Users\troyj\ai110-module2show-pawpal-starter
+plugins: anyio-4.13.0
+collected 2 items                                                                                                                                                  
 
+tests\test_pawpal.py ..                                                                                                                                      [100%]
+
+======================================================================== 2 passed in 0.03s ========================================================git add .=======
+>> C:\Users\troyj\ai110-module2show-pawpal-starter> 
 ## 📐 Smarter Scheduling
+
+### Sorting
+Tasks are sorted by time using `PawPalSystem.sort_by_time()`.
+
+### Filtering
+Tasks can be filtered by pet name using `filter_by_pet()` and by completion status using `filter_by_status()`.
+
+### Conflict Detection
+`detect_conflicts()` checks for tasks that occur on the same date and time and returns warning messages.
+
+### Recurring Tasks
+`mark_task_complete()` automatically creates the next occurrence of daily and weekly tasks using `timedelta`.
 
 > Fill in once you've implemented scheduling logic.
 
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `sort_by_time()` | Sorts tasks chronologically using task time |
+| Filtering | `filter_by_pet()`, `filter_by_status()` | Allows viewing tasks by pet or completion state |
+| Conflict handling | `detect_conflicts()` | Detects tasks scheduled at the same date and time |
+| Recurring tasks | `mark_task_complete()` | Creates the next daily or weekly task after completion |
+
+## Confidence Level: 5
 
 ## 📸 Demo Walkthrough
 
 Describe your app in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Launch the Streamlit application and enter owner and pet information.
+2. Add pets to the PawPal+ system.
+3. Create tasks with due dates and times.
+4. Generate and view the pet care schedule.
+5. Review sorted tasks, recurring tasks, and conflict warnings.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
